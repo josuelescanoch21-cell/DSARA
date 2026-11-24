@@ -1,0 +1,180 @@
+/* =========================================================
+   App de citas · salón de colorista
+   Idea central: la "carta de colores" (mechones de muestra)
+   es el selector de servicio. Todo lo demás queda sobrio.
+   Fuentes (Google Fonts): Gelasio + Fira Sans
+   ========================================================= */
+
+:root {
+  /* Paleta base */
+  --porcelana: #F4F2F6;      /* fondo: frío, no crema */
+  --ciruela: #2B1E2F;        /* texto principal */
+  --violeta-matiz: #5E3FA0;  /* acción principal (como el matizador violeta) */
+  --lila-ceniza: #DCD5E6;    /* bordes, superficies secundarias */
+  --caoba: #8C2F39;          /* errores y avisos */
+  --rubio-miel: #D9B26F;     /* horario elegido, detalles puntuales */
+
+  /* Derivados */
+  --blanco: #FFFFFF;
+  --texto-suave: #5F5266;
+  --violeta-hover: #4C3185;
+
+  /* Tipografía */
+  --f-display: "Gelasio", Georgia, serif;
+  --f-ui: "Fira Sans", system-ui, sans-serif;
+
+  /* Escala tipográfica (proporción 1.25 sobre 16px) */
+  --t-xs: 0.8rem;
+  --t-sm: 0.9rem;
+  --t-base: 1rem;
+  --t-md: 1.25rem;
+  --t-lg: 1.563rem;
+  --t-xl: 2.441rem;
+  --t-xxl: 3.052rem;
+
+  /* Espaciado (8pt) */
+  --e-1: 4px; --e-2: 8px; --e-3: 16px; --e-4: 24px; --e-5: 32px; --e-6: 48px; --e-7: 64px;
+
+  /* Radios según jerarquía */
+  --r-chip: 999px;
+  --r-panel: 14px;
+}
+
+* { box-sizing: border-box; margin: 0; }
+
+body {
+  background: var(--porcelana);
+  color: var(--ciruela);
+  font-family: var(--f-ui);
+  font-size: var(--t-base);
+  line-height: 1.5;
+}
+
+:focus-visible { outline: 3px solid var(--violeta-matiz); outline-offset: 3px; }
+
+/* ---------- Barra superior ---------- */
+.barra {
+  display: flex; justify-content: space-between; align-items: center;
+  max-width: 1200px; margin: 0 auto; padding: var(--e-4) var(--e-5);
+}
+.marca { font-family: var(--f-display); font-size: var(--t-md); font-weight: 700; }
+.enlace-citas { color: var(--ciruela); font-weight: 500; text-decoration-color: var(--lila-ceniza); text-underline-offset: 4px; }
+
+/* ---------- Encabezado + carta de colores ---------- */
+.portada {
+  max-width: 1200px; margin: 0 auto; padding: var(--e-5) var(--e-5) 0;
+  display: grid; grid-template-columns: 5fr 7fr; gap: var(--e-6); align-items: start;
+}
+.portada h1 {
+  font-family: var(--f-display); font-weight: 700;
+  font-size: var(--t-xxl); line-height: 1.08; letter-spacing: -0.01em;
+  max-width: 11ch;
+}
+.portada p { margin-top: var(--e-3); color: var(--texto-suave); max-width: 38ch; line-height: 1.6; }
+
+/* Riel del que cuelgan los mechones */
+.carta { position: relative; padding-top: var(--e-3); }
+.carta::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 10px;
+  background: var(--ciruela); border-radius: var(--r-chip);
+}
+.mechones { display: grid; grid-template-columns: repeat(6, 1fr); gap: var(--e-3); list-style: none; padding: 0; }
+.mechon { display: flex; flex-direction: column; align-items: center; }
+.mechon button {
+  all: unset; cursor: pointer; display: flex; flex-direction: column; align-items: center; width: 100%;
+}
+.hebra {
+  width: 56px; height: 230px;
+  background:
+    repeating-linear-gradient(90deg, rgba(255,255,255,.10) 0 1px, transparent 1px 4px),
+    linear-gradient(180deg, var(--raiz), var(--puntas));
+  clip-path: polygon(8% 0, 92% 0, 100% 70%, 72% 100%, 50% 94%, 26% 100%, 0 70%);
+  transition: transform 260ms cubic-bezier(.2,.8,.2,1);
+}
+.mechon button:hover .hebra { transform: scaleY(1.03); }
+.mechon button[aria-pressed="true"] .hebra { transform: scaleY(1.12); }
+.hebra { transform-origin: top center; }
+.nombre-servicio { margin-top: var(--e-4); font-weight: 600; font-size: var(--t-sm); text-align: center; }
+.duracion { font-size: var(--t-xs); color: var(--texto-suave); }
+.mechon button[aria-pressed="true"] .nombre-servicio { color: var(--violeta-matiz); text-decoration: underline 2px; text-underline-offset: 5px; margin-top: calc(var(--e-4) + 28px); }
+
+/* ---------- Reserva ---------- */
+.reserva {
+  max-width: 1200px; margin: var(--e-6) auto var(--e-7); padding: 0 var(--e-5);
+  display: grid; grid-template-columns: 8fr 4fr; gap: var(--e-5);
+}
+.panel { background: var(--blanco); border: 1px solid var(--lila-ceniza); border-radius: var(--r-panel); padding: var(--e-5); }
+.panel h2 { font-family: var(--f-display); font-size: var(--t-lg); font-weight: 700; margin-bottom: var(--e-4); }
+
+.dias { display: flex; gap: var(--e-2); flex-wrap: wrap; margin-bottom: var(--e-5); }
+.dia {
+  font: inherit; font-size: var(--t-sm); cursor: pointer;
+  padding: var(--e-2) var(--e-3); border-radius: var(--r-chip);
+  border: 1px solid var(--lila-ceniza); background: var(--porcelana); color: var(--ciruela);
+}
+.dia[aria-pressed="true"] { background: var(--ciruela); color: var(--porcelana); border-color: var(--ciruela); }
+
+.horas { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--e-2); }
+.hora {
+  font: inherit; font-variant-numeric: tabular-nums; cursor: pointer;
+  padding: var(--e-3) 0; border-radius: 8px;
+  border: 1px solid var(--lila-ceniza); background: var(--blanco); color: var(--ciruela);
+}
+.hora:disabled { color: #A79DAD; background: var(--porcelana); text-decoration: line-through; cursor: not-allowed; }
+.hora[aria-pressed="true"] { background: var(--rubio-miel); border-color: var(--rubio-miel); font-weight: 600; }
+
+.resumen dl { display: grid; grid-template-columns: auto 1fr; gap: var(--e-2) var(--e-4); }
+.resumen dt { color: var(--texto-suave); font-size: var(--t-sm); }
+.resumen dd { font-weight: 500; text-align: right; }
+.sena { margin-top: var(--e-4); padding-top: var(--e-4); border-top: 1px solid var(--lila-ceniza); }
+.sena dd { font-family: var(--f-display); font-size: var(--t-md); font-weight: 700; }
+.nota { font-size: var(--t-xs); color: var(--texto-suave); margin-top: var(--e-3); line-height: 1.5; }
+
+.boton-principal {
+  display: block; width: 100%; margin-top: var(--e-4);
+  font: inherit; font-weight: 600; cursor: pointer;
+  padding: var(--e-3); border: 0; border-radius: 10px;
+  background: var(--violeta-matiz); color: var(--blanco);
+}
+.boton-principal:hover { background: var(--violeta-hover); }
+
+.error { color: var(--caoba); font-size: var(--t-sm); margin-top: var(--e-2); }
+
+/* ---------- Móvil ---------- */
+@media (max-width: 860px) {
+  .portada, .reserva { grid-template-columns: 1fr; padding-left: var(--e-3); padding-right: var(--e-3); }
+  .portada h1 { font-size: var(--t-xl); }
+  .mechones { grid-template-columns: repeat(6, 64px); overflow-x: auto; padding-bottom: var(--e-3); }
+  .hebra { width: 44px; height: 170px; }
+  .horas { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hebra { transition: none; }
+}
+
+/* Evita que la fila de mechones ensanche la página en móvil */
+.portada > *, .reserva > * { min-width: 0; }
+
+/* ---------- Efecto del botón de pago (adaptado del "Button effect" de Figma) ----------
+   En vez de 108 cursores girando sin parar, al hacer clic salen una sola vez
+   12 hebras de color desde el centro del botón, apuntando hacia afuera. */
+.boton-principal { position: relative; overflow: visible; transition: background 160ms, transform 120ms; }
+.boton-principal:active { transform: scale(0.97); }
+.hebra-chispa {
+  position: absolute; left: 50%; top: 50%;
+  width: 6px; height: 18px; border-radius: 999px;
+  pointer-events: none;
+  background: var(--color);
+  transform: translate(-50%, -50%) rotate(var(--giro));
+  animation: salir 650ms cubic-bezier(.15,.8,.25,1) forwards;
+}
+@keyframes salir {
+  0%   { opacity: 0; transform: translate(-50%, -50%) rotate(var(--giro)) scale(.4); }
+  20%  { opacity: 1; }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) rotate(var(--giro)) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hebra-chispa { display: none; }
+  .boton-principal:active { transform: none; }
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reserva tu cita</title>
+<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+<header class="barra">
+  <a class="marca" href="index.html" style="color:inherit;text-decoration:none">Nombre del salón</a>
+  <a class="enlace-citas" href="#">Mis citas</a>
+</header>
+
+<section class="portada">
+  <div>
+    <h1>Elige tu color y reserva tu hora</h1>
+    <p>Toca un mechón para ver el servicio. La cita se confirma con una seña de S/ 50 que se descuenta del total el día de tu visita.</p>
+  </div>
+  <div class="carta">
+    <ul class="mechones">
+      <li class="mechon"><button aria-pressed="true"><span class="hebra" style="--raiz:#3B2A22;--puntas:#C9A26B"></span><span class="nombre-servicio">Balayage</span><span class="duracion">aprox. 4 h</span></button></li>
+      <li class="mechon"><button aria-pressed="false"><span class="hebra" style="--raiz:#6B4F3A;--puntas:#E3CFA4"></span><span class="nombre-servicio">Babylights</span><span class="duracion">aprox. 3 h</span></button></li>
+      <li class="mechon"><button aria-pressed="false"><span class="hebra" style="--raiz:#24161A;--puntas:#4A2C25"></span><span class="nombre-servicio">Tinte de raíz</span><span class="duracion">aprox. 1 h 30</span></button></li>
+      <li class="mechon"><button aria-pressed="false"><span class="hebra" style="--raiz:#8D8478;--puntas:#DAD4CA"></span><span class="nombre-servicio">Matiz ceniza</span><span class="duracion">aprox. 1 h</span></button></li>
+      <li class="mechon"><button aria-pressed="false"><span class="hebra" style="--raiz:#6E2A1A;--puntas:#C25A2E"></span><span class="nombre-servicio">Cobrizo</span><span class="duracion">aprox. 2 h</span></button></li>
+      <li class="mechon"><button aria-pressed="false"><span class="hebra" style="--raiz:#3A2152;--puntas:#9B7BD0"></span><span class="nombre-servicio">Fantasía</span><span class="duracion">aprox. 4 h</span></button></li>
+    </ul>
+  </div>
+</section>
+
+<section class="reserva">
+  <div class="panel">
+    <h2>¿Qué día vienes?</h2>
+    <div class="dias">
+      <button class="dia">Mar 24</button>
+      <button class="dia">Mié 25</button>
+      <button class="dia" aria-pressed="true">Jue 26</button>
+      <button class="dia">Vie 27</button>
+      <button class="dia">Sáb 28</button>
+      <button class="dia">Lun 30</button>
+    </div>
+    <div class="horas">
+      <button class="hora" disabled>9:00</button>
+      <button class="hora">10:00</button>
+      <button class="hora" aria-pressed="true">11:00</button>
+      <button class="hora" disabled>12:00</button>
+      <button class="hora">14:00</button>
+      <button class="hora">15:00</button>
+      <button class="hora" disabled>16:00</button>
+      <button class="hora">17:00</button>
+    </div>
+  </div>
+
+  <aside class="panel resumen">
+    <h2>Tu cita</h2>
+    <dl>
+      <dt>Servicio</dt><dd>Balayage</dd>
+      <dt>Fecha</dt><dd>Jueves 26 nov</dd>
+      <dt>Hora</dt><dd>11:00</dd>
+    </dl>
+    <dl class="sena">
+      <dt>Seña a pagar ahora</dt><dd>S/ 50</dd>
+    </dl>
+    <button class="boton-principal">Pagar seña y reservar</button>
+    <p class="nota">Recibirás la cita en tu correo y quedará agendada en el calendario del salón.</p>
+  </aside>
+</section>
+<script src="efecto-boton.js"></script>
+</body>
+</html>
